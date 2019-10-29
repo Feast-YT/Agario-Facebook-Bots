@@ -3,12 +3,19 @@
 // @namespace    Free and Real agario bots
 // @version      1.0.10
 // @description  Free and Real open source agario bots
-// @author       Nel, xN3BULA, Jimboy3100, Darkx
+// @author       Nel, xN3BULA, Rzy, test, Genius, Darkx
+// @icon64       http://imasters.org.ru/agar/agar_allys_ext_favicon.png
+// @icon64URL    http://imasters.org.ru/agar/agar_allys_ext_favicon.png
+// @icon         http://imasters.org.ru/agar/agar_allys_ext_favicon.png
 // @grant        none
 // @run-at       document-start
 // @match        *://agar.io/*
 // ==/UserScript==
-
+setTimeout(function(){
+var script = document.createElement("script");
+script.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+document.getElementsByTagName("head")[0].appendChild(script);
+    }, 3000);
 /* START OF USER SETTINGS */
 window.options = {
     settings: {
@@ -184,6 +191,9 @@ window.connection = {
         document.getElementById('userStatus').style.color = '#00C02E'
         document.getElementById('userStatus').innerText = 'Connected'
         document.getElementById('connect').disabled = true
+        swal("Connected ✅", "WWW.NBOTS.TK", "success");
+        	console.log('Connection to bot server open');
+        	$('#connect').text('Connect');
         document.getElementById('startBots').disabled = false
         document.getElementById('stopBots').disabled = false
     },
@@ -192,6 +202,9 @@ window.connection = {
         switch (dataView.getUint8(0)) {
             case 0:
                 document.getElementById('startBots').disabled = true
+                swal("Bots Started ✅", "Hope You Enjoy😎", "success");
+                console.log('Connection to bot server open');
+                $('#startBots')
                 document.getElementById('stopBots').disabled = false
                 document.getElementById('startBots').style.display = 'none'
                 document.getElementById('stopBots').style.display = 'inline'
@@ -200,6 +213,7 @@ window.connection = {
                 break
             case 1:
                 document.getElementById('stopBots').disabled = true
+                swal("Stopping Bots...!", "⌛Please Wait 30 Seconds⌛", "warning"); console.log('Waiting...!'); $('#startBots')
                 document.getElementById('stopBots').innerText = 'Stopping Bots...'
                 break
             case 2:
@@ -214,7 +228,8 @@ window.connection = {
                 window.bots.ai = false
                 break
             case 3:
-                alert('Your IP has captcha and bots are unable to spawn, change your ip with a VPN or something to one that doesn\'t has captcha in order to use the bots')
+                swal("😭Your IP Has Captcha!😭", "✅Use VPN or VPS to fix This Captcha✅", "error");
+                console.log('Waiting...!');
                 break
             case 4:
                 //Connected Bot count = getUint8(1)
@@ -617,11 +632,13 @@ function setGUIEvents() {
         if (window.game.url && window.game.protocolVersion && window.game.clientVersion && !window.user.startedBots) {
             window.partytoken = MC.getPartyToken()
             if (this.partytoken != "" && this.partytoken != null) {
-                if (window.bots.name && window.bots.amount && !document.getElementById('socialLoginContainer')) window.connection.send(window.buffers.startBots(window.game.url.split('?')[0], window.game.protocolVersion, window.game.clientVersion, window.user.isAlive, window.unescape(window.encodeURIComponent(window.bots.name)), window.bots.amount))
+                if (window.bots.name && window.bots.amount && !document.getElementById('socialLoginContainer')) window.connection.send(window.buffers.startBots(window.game.url, window.game.protocolVersion, window.game.clientVersion, window.user.isAlive, window.unescape(window.encodeURIComponent(window.bots.name)), window.bots.amount))
                 //if (window.bots.name && window.bots.amount && !document.getElementById('socialLoginContainer')) window.connection.send(window.buffers.startBots(window.game.url.split('?')[0], window.game.protocolVersion, window.game.clientVersion, window.user.isAlive, window.bots.name, window.bots.amount))
-                else alert('Bots name and amount are required before starting the bots, also you need to be logged in to your agar.io account in order to start the bots')
+                else swal("❌Bots Name and Amount Are Required!❌", "😔Also You Need to Be Login to Your Agar.io Account😔", "error");
+                console.log('Connection to bot server open');
             } else {
-                alert('Bots are designed for party')
+            	swal("❌Bots Are Working in Party Only!❌", "Bots Can't Work in FFA,EXP,TEAM, and BATTLE ROYAL", "error");
+            	console.log('Connection to bot server open');
             }
         }
     })
@@ -635,13 +652,14 @@ function setGUIEvents() {
     })
 }
 
-function loadUI() {
-    $('body').append(`
-<div id="botClient" style="position: absolute; top: 92%; left: 85%; padding: 0px 8px; font-family: Tahoma; color: rgb(255, 255, 255); z-index: 9999; border-radius: 5px; min-height: 16px; min-width: 200px; background-color: rgba(2, 0, 0, 0.4);">
+function loadUI(){
+ $('body').append(`
+<div id="botClient" style="position: absolute; top: 92%; left: 85%; padding: 0px 8px; font-family: Courier New; color: rgb(255, 255, 255); z-index: 9999; border-radius: 5px; min-height: 16px; min-width: 200px; background-color: rgba(2, 0, 0, 0.4);">
+<div><b><center>Infomations Bots</b></center> <span id="info" color="White"class="label label-info pull-right"></span></div>
+<br>
 <div><b>Bot Count</b>: <span id="botCount" class="label label-info pull-right">Waiting</span></div>
 <b><div><b>ServerSlots</b>: <span id="slots" class="label label-info pull-right">Waiting</span></div>
 </div>`);
-
 }
 
 WebSocket.prototype.storedSend = WebSocket.prototype.send
