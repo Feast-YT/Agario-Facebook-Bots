@@ -191,7 +191,7 @@ window.connection = {
         document.getElementById('userStatus').style.color = '#00C02E'
         document.getElementById('userStatus').innerText = 'Connected'
         document.getElementById('connect').disabled = true
-        swal("Connected", "WWW.NBOTS.TK", "success");
+        swal("Connected", "Join Here : www.nbots.tk", "success");
         	console.log('Connection to bot server open');
         	$('#connect').text('Connect');
         document.getElementById('startBots').disabled = false
