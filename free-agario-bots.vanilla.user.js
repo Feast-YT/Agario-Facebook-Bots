@@ -191,7 +191,7 @@ window.connection = {
         document.getElementById('userStatus').style.color = '#00C02E'
         document.getElementById('userStatus').innerText = 'Connected'
         document.getElementById('connect').disabled = true
-        swal("Connected ✅", "WWW.NBOTS.TK", "success");
+        swal("Connected", "WWW.NBOTS.TK", "success");
         	console.log('Connection to bot server open');
         	$('#connect').text('Connect');
         document.getElementById('startBots').disabled = false
@@ -202,7 +202,7 @@ window.connection = {
         switch (dataView.getUint8(0)) {
             case 0:
                 document.getElementById('startBots').disabled = true
-                swal("Bots Started ✅", "Hope You Enjoy😎", "success");
+                swal("Bots Started", "Hope You Enjoy", "success");
                 console.log('Connection to bot server open');
                 $('#startBots')
                 document.getElementById('stopBots').disabled = false
@@ -213,7 +213,7 @@ window.connection = {
                 break
             case 1:
                 document.getElementById('stopBots').disabled = true
-                swal("Stopping Bots...!", "⌛Please Wait 30 Seconds⌛", "warning"); console.log('Waiting...!'); $('#startBots')
+                swal("Stopping Bots...!", "Please Wait 30 Seconds", "warning"); console.log('Waiting...!'); $('#startBots')
                 document.getElementById('stopBots').innerText = 'Stopping Bots...'
                 break
             case 2:
@@ -228,7 +228,7 @@ window.connection = {
                 window.bots.ai = false
                 break
             case 3:
-                swal("😭Your IP Has Captcha!😭", "✅Use VPN or VPS to fix This Captcha✅", "error");
+                swal("Your IP Has Captcha!", "Use VPN or VPS to fix This Captcha", "error");
                 console.log('Waiting...!');
                 break
             case 4:
@@ -634,10 +634,10 @@ function setGUIEvents() {
             if (this.partytoken != "" && this.partytoken != null) {
                 if (window.bots.name && window.bots.amount && !document.getElementById('socialLoginContainer')) window.connection.send(window.buffers.startBots(window.game.url, window.game.protocolVersion, window.game.clientVersion, window.user.isAlive, window.unescape(window.encodeURIComponent(window.bots.name)), window.bots.amount))
                 //if (window.bots.name && window.bots.amount && !document.getElementById('socialLoginContainer')) window.connection.send(window.buffers.startBots(window.game.url.split('?')[0], window.game.protocolVersion, window.game.clientVersion, window.user.isAlive, window.bots.name, window.bots.amount))
-                else swal("❌Bots Name and Amount Are Required!❌", "😔Also You Need to Be Login to Your Agar.io Account😔", "error");
+                else swal("Bots Name and Amount Are Required!", "Also You Need to Be Login to Your Agar.io Account", "error");
                 console.log('Connection to bot server open');
             } else {
-            	swal("❌Bots Are Working in Party Only!❌", "Bots Can't Work in FFA,EXP,TEAM, and BATTLE ROYAL", "error");
+            	swal("Bots Are Working in Party Only!", "Bots Can't Work in FFA,EXP,TEAM, and BATTLE ROYAL", "error");
             	console.log('Connection to bot server open');
             }
         }
