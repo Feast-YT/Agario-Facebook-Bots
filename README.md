@@ -1,4 +1,4 @@
-# free-agario-bots
+# FREE AGARIO FACEBOOK BOTS
 Free open source agar.io bots
 
 [Join our Discord](www.nbots.tk)
